@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class AndroidManager : MonoBehaviour
@@ -6,6 +7,25 @@ public class AndroidManager : MonoBehaviour
     public Text CountText;
 
     private int _count;
+    
+    private MainControls _mainControls;
+
+    private void Awake()
+    {
+        _mainControls = new MainControls();
+        _mainControls.Player.ClickAction.performed += ctx => VolumeEvent("Up");
+    }
+
+    private void OnEnable()
+    {
+        _mainControls.Enable();
+
+    }
+
+    private void OnDisable()
+    {
+        _mainControls.Disable();
+    }
 
     private void Start()
     {
